@@ -20,12 +20,14 @@ return [
 
 
     'roles' => [
-        'super_admin' => 1
+        'super_admin' => 1,
+        'customer' => 2,
     ],
 
-    'city_status' => [
-        'active' => 'Active',
-        'inactive' => 'Inactive'
+    'approval_status' => [
+        '0' => 'Pending',
+        '1' => 'Approved',
+        '2' => 'Rejected'
     ],
     
     'status' => [
@@ -33,9 +35,11 @@ return [
         'inactive' => 'Inactive'
     ],
 
-    'status' => [
-        'active' => 'Active',
-        'inactive' => 'Inactive'
+    "login_type" => [
+        'google' => 'Google',
+        'normal' => 'Normal',
+        'apple' => 'Apple',
+        'facebook' => 'Facebook'
     ],
 
     'date_format' => [
@@ -65,22 +69,9 @@ return [
     // 'currency_symbol' => '₹',
     'currency_symbol' => '',
 
-    'receipt_type' => [
-        'cash' => "Cash",
-        'sale' => 'Sale'
+    'languages' => [
+        'en' => 'English'
     ],
-
-    'receipt_type_export' => [
-        'cash' => "Rcpt",
-        'sale' => 'Sale'
-    ],
-    
-    'payment_mode' => [
-        'bank'   => 'Bank Transfer',
-        'cash' => 'Cash',
-    ],
-    'divided_number'=>1,
-    'currency_conversion' => 100,
 
     'api_per_page' => 10,
     'api_ledger_per_page' => 20,

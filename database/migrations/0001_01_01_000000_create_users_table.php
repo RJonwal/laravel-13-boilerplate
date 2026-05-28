@@ -17,11 +17,21 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('phone')->nullable();
             $table->string('password');
 
-            $table->enum('status', array_keys(config('constant.status')))->default('active');
+            $table->string('country_code')->nullable();
+            $table->string('phone')->nullable();
 
+            $table->enum('login_type', array_keys(config('constant.login_type')))->default('normal');
+
+            $table->text('social_user_id')->nullable();
+            
+            $table->enum('status', array_keys(config('constant.status')))->default('active');
+            $table->tinyInteger('approval_status')->default(0)->comment('0 = pending, 1 = approved, 2 = rejected');
+
+            $table->enum('language', array_keys(config('constant.languages')))->default('en');
+            
+            $table->text('device_token')->nullable();
             $table->text('fcm_token')->nullable();
             
             $table->rememberToken();

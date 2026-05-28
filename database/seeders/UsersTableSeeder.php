@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
                 'email'          => 'superadmin@gmail.com',
                 'password'       => bcrypt('Superadmin@1234'),
                 'remember_token' => null,
+                'approval_status' => 1,
                 'email_verified_at' => date('Y-m-d H:i:s'),
             ]
         ];

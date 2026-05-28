@@ -4,7 +4,6 @@ namespace App\Domains\Core\User\Models;
 
 use App\Domains\Api\Auth\Emails\SendResetPasswordOtpMail;
 use App\Domains\Core\Role\Models\Role;
-use App\Domains\Core\Permission\Models\Permission;
 use App\Domains\Core\Upload\Models\Uploads;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -26,12 +25,18 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'uuid',
-        'name',
-        'email',
-        'password',
-        'phone',
+        'name', 
+        'email', 
+        'password', 
+        'country_code', 
+        'phone', 
+        'login_type', 
+        'social_user_id', 
+        'device_token', 
+        'status', 
+        'approval_status', 
         'fcm_token',
-        'status',
+        "language",
     ];
 
     /**
@@ -85,16 +90,11 @@ class User extends Authenticatable
         return $this->roles()->where('id', config('constant.roles.super_admin'))->exists();
     }
 
-    public function getIsStaffAttribute()
+    public function getIsCustomerAttribute()
     {
-        return $this->roles()->where('id', config('constant.roles.staff'))->exists();
+        return $this->roles()->where('id', config('constant.roles.customer'))->exists();
     }
 
-    public function getIsAccountantAttribute()
-    {
-        return $this->roles()->where('id', config('constant.roles.accountant'))->exists();
-    }
-    
     public function uploads()
     {
         return $this->morphMany(Uploads::class, 'uploadsable');

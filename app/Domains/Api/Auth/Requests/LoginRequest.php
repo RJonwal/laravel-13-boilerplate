@@ -21,9 +21,15 @@ class LoginRequest extends ApiRequest
      */
     public function rules(): array
     {
-        $rules['user_login'] = ['required'];
-        $rules['password'] = ['required', 'string', 'min:8'];
-        
+        $rules = [
+            'login_type' => ['required', 'in:normal,facebook,google']            
+        ];
+        if($this->login_type == 'normal'){
+            $rules['user_login'] = ['required'];
+            $rules['password'] = ['required', 'string', 'min:8'];
+        } else {
+            $rules['social_user_id']  = ['required'];
+        }
         return $rules;
     }
 }
