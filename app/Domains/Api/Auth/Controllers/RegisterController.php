@@ -24,7 +24,7 @@ class RegisterController extends APIController
                 'login_type' => $request->register_type,
             ];
 
-            if ($request->filled('password')) {
+            if ($request->register_type == 'normal') {
                 $userData['password'] = bcrypt($request->password);
                 $userData['country_code'] = $request->country_code;
                 $userData['phone'] = $request->phone;
@@ -40,12 +40,12 @@ class RegisterController extends APIController
             DB::commit();
 
             return $this->apiSuccess([], trans('messages.register_messages.success'));
-        } catch (\Exception $e) {
+        } catch (\Throwable $th) {
             DB::rollBack();
 
-            Log::error('Registration error: ' , ['error' => $e->getMessage(), 'stack' => $e->getTraceAsString()]);
+            Log::error('Registration error: ' , ['error' => $th->getMessage(), 'stack' => $th->getTraceAsString()]);
 
-            return $this->apiError($e->getMessage());
+            return $this->apiError($th->getMessage());
         }
     }
 }

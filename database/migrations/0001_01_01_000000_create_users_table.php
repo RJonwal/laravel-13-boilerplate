@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
 
             $table->string('country_code')->nullable();
             $table->string('phone')->nullable();
@@ -31,7 +31,6 @@ return new class extends Migration
 
             $table->enum('language', array_keys(config('constant.languages')))->default('en');
             
-            $table->text('device_token')->nullable();
             $table->text('fcm_token')->nullable();
             
             $table->rememberToken();

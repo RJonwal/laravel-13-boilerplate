@@ -96,10 +96,11 @@ return [
         'approval_pending' => 'Your account is pending approval. Please wait for confirmation.',
         'approval_rejected' => 'Your profile has been denied. Please contact support for assistance.',
         'approval_required' => 'Account approval is required to login.',
+        "login_failed" => 'Login failed. Please try again later.',
     ],   
     'logout' => [
         'logout_successful' => 'Logged out successfully',
-        'logout_failed' => 'Logout failed',
+        'logout_failed' => 'Logout failed. Please try again later.',
     ],
     'venue_types_retrieved' => 'Venue types retrieved successfully.',
     'privacy_terms_retrieved' => 'Privacy and Terms retrieved successfully.',  
