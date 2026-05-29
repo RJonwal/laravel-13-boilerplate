@@ -64,7 +64,7 @@ class SettingSeeder extends Seeder
                 'created_by'    => 1,
             ],
             [
-                'key'           => 'site_privacy_policy',
+                'key'           => 'privacy_policy',
                 'value'         => null,
                 'type'          => 'text',
                 'details'       => null,
@@ -76,7 +76,7 @@ class SettingSeeder extends Seeder
                 'created_by'    => 1,
             ],
             [
-                'key'           => 'site_term_and_conditionn',
+                'key'           => 'terms_conditions',
                 'value'         => null,
                 'type'          => 'text',
                 'details'       => null,

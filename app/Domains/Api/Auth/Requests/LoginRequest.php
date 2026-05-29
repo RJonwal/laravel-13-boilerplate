@@ -22,7 +22,7 @@ class LoginRequest extends ApiRequest
     public function rules(): array
     {
         $rules = [
-            'login_type' => ['required', 'in:normal,facebook,google']            
+            'login_type' => ['required', 'in:normal,facebook,google,apple'],            
         ];
         if($this->login_type == 'normal'){
             $rules['user_login'] = ['required'];

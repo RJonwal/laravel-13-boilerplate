@@ -10,6 +10,7 @@ class SendEmailOtp extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $email;
     public $user;
     public $otp;
     public $subjectText;
