@@ -19,11 +19,11 @@ class SidebarMenu extends Component
                 'permission' => null,
             ],
             [
-                'title' => trans('cruds.menus.customer'),
+                'title' => trans('cruds.menus.user'),
                 'icon' => 'ri-team-line',
-                'route' => 'customers.index',
-                'active' => request()->routeIs('customers.*'),
-                'permission' => 'customer_access',
+                'route' => 'users.index',
+                'active' => request()->routeIs('users.*'),
+                'permission' => 'user_access',
             ],
             [
                 'title' => trans('cruds.menus.ledger'),

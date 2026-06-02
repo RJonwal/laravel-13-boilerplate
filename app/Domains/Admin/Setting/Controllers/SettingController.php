@@ -15,7 +15,6 @@ class SettingController extends Controller
     {
         abort_if(Gate::denies('setting_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $siteSettings = Setting::where('group','web')->get();
-        $siteContentSettings = Setting::where('group','content')->get();
         $supportSettings = Setting::where('group','support')->get();
         $contentSettings = Setting::where('group','content')
         ->where('key','!=','site_about')->get();
@@ -57,7 +56,7 @@ class SettingController extends Controller
                 'success' => true,
                 'message' => trans('messages.crud.update_record'),
             ], 200);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             DB::rollBack();
             // dd($e);
             return response()->json(['success' => false,  'error' => trans('messages.error_message')], 400 );

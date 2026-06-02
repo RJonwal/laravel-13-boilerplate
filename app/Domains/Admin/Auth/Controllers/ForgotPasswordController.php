@@ -69,7 +69,7 @@ class ForgotPasswordController extends Controller
 
             }
 
-        }catch(\Exception $e){
+        }catch(\Throwable $e){
             DB::rollBack();
 
             return response()->json([

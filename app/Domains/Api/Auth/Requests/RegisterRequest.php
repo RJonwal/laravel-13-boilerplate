@@ -28,8 +28,7 @@ class RegisterRequest extends ApiRequest
             'email'     => ['required','email','regex:/^(?!.*[\/]).+@(?!.*[\/]).+\.(?!.*[\/]).+$/i','unique:users,email,NULL,id,deleted_at,NULL']            
         ];
         if($this->register_type == 'normal'){
-            $rules['country_code']  = ['required', 'string', 'regex:/^\+\d{1,4}$/'];
-            $rules['phone']  = ['required', 'numeric', 'regex:/^[0-9]{7,15}$/', 'unique:users,phone,NULL,id,deleted_at,NULL'];
+            $rules['phone']  = ['required', 'regex:/^\+\d{10,15}$/', 'unique:users,phone,NULL,id,deleted_at,NULL'];
              
             $rules['password']  = ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/'];
         }

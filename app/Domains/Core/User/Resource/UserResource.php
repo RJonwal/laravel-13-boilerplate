@@ -20,7 +20,6 @@ class UserResource extends JsonResource
             'id'            => $this->id,
             'name'          => $this->name,
             'email'         => $this->email,
-            'country_code'  => $this->country_code,
             'phone'         => $this->phone,
             'status'        => $this->status,
             'user_type'     => array_search($roleId, config('constant.roles')),

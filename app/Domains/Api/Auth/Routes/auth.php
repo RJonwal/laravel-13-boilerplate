@@ -10,6 +10,12 @@ Route::prefix('auth')->group(function () {
 
     Route::post('login', [LoginController::class, 'login']);
 
+    // OTP Routes
+    Route::post('login/request-otp', [LoginController::class, 'requestLoginOtp']);
+    Route::post('login/verify-otp', [LoginController::class, 'verifyLoginOtp']);
+    Route::post('login/resend-otp', [LoginController::class, 'resendLoginOtp']);
+
+    // Forgot Password
     Route::post('forgot-password', [ForgotPasswordController::class, 'forgotPassword']);
     Route::post('password/verify-otp', [ForgotPasswordController::class, 'verifyOtp']);
     Route::post('password/reset-password', [ForgotPasswordController::class, 'resetPassword']);

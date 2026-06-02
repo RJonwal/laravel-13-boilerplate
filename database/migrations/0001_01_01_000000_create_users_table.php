@@ -19,7 +19,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
 
-            $table->string('country_code')->nullable();
             $table->string('phone')->nullable();
 
             $table->enum('login_type', array_keys(config('constant.login_type')))->default('normal');

@@ -26,7 +26,6 @@ class RegisterController extends APIController
 
             if ($request->register_type == 'normal') {
                 $userData['password'] = bcrypt($request->password);
-                $userData['country_code'] = $request->country_code;
                 $userData['phone'] = $request->phone;
             } else {
                 $userData['social_user_id'] = $request->social_user_id;
@@ -45,7 +44,7 @@ class RegisterController extends APIController
 
             Log::error('Registration error: ' , ['error' => $th->getMessage(), 'stack' => $th->getTraceAsString()]);
 
-            return $this->apiError($th->getMessage());
+            return $this->apiError(trans('api.something_went_wrong'), 'something_went_wrong', ['error' => $th->getMessage()], 500); 
         }
     }
 }

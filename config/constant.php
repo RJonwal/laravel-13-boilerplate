@@ -75,7 +75,5 @@ return [
 
     'api_per_page' => 10,
     'api_ledger_per_page' => 20,
-    'customer_per_page' => 20,
-    'deleted_receipt_days' => 30,
-    'default_country_code' => '91',
+    'customer_per_page' => 20
 ];

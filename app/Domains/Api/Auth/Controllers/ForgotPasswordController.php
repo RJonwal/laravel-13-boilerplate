@@ -7,6 +7,7 @@ use App\Http\Controllers\APIController;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ForgotPasswordController extends APIController
 {
@@ -41,9 +42,10 @@ class ForgotPasswordController extends APIController
             DB::commit();
 
             return $this->apiSuccess([],trans('auth.messages.forgot_password.otp_sent'));
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             DB::rollBack();
-            return $this->apiError(trans('messages.error_message'));
+            Log::error('Forgot password error: ' , ['error' => $e->getMessage(), 'stack' => $e->getTraceAsString()]);
+            return $this->apiError(trans('api.something_went_wrong'), 'something_went_wrong', ['error' => $e->getMessage()], 500);
         }
     }
 
@@ -72,8 +74,9 @@ class ForgotPasswordController extends APIController
             }
 
             return $this->apiSuccess(['token' => encrypt($request->otp)], trans('auth.messages.forgot_password.validation.verified_otp'));
-        } catch (\Exception $e) {
-            return $this->apiError(trans('messages.error_message'));
+        } catch (\Throwable $e) {
+            Log::error('Verify OTP error: ' , ['error' => $e->getMessage(), 'stack' => $e->getTraceAsString()]);
+            return $this->apiError(trans('api.something_went_wrong'), 'something_went_wrong', ['error' => $e->getMessage()], 500);
         }
     }
 
@@ -112,9 +115,10 @@ class ForgotPasswordController extends APIController
             DB::commit();
 
             return $this->apiSuccess([],trans('auth.messages.forgot_password.success_update'));
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             DB::rollBack();
-            return $this->apiError(trans('messages.error_message'));
+            Log::error('Reset password error: ' , ['error' => $e->getMessage(), 'stack' => $e->getTraceAsString()]);
+            return $this->apiError(trans('api.something_went_wrong'), 'something_went_wrong', ['error' => $e->getMessage()], 500);
         }
     }
 }

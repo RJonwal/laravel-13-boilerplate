@@ -1,0 +1,845 @@
+{
+  "info": {
+    "_postman_id": "4cbafe2e-3f14-445a-9154-43918e66f511",
+    "name": "laravel-13-boilerplate",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "16863052"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"language\": \"en\",\r\n    \"register_type\": \"normal\" , // normal,facebook,google,apple\r\n    \r\n    \"social_user_id\": \"abcd12345\",\r\n\r\n    \"name\": \"Vikram Singh\",\r\n    \"email\": \"vikramsinghh.his@gmail.com\",\r\n    \"password\": \"Vikram@1234\",\r\n    \"password_confirmation\": \"Vikram@1234\",\r\n    \"phone\" : \"+917976501532\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{site_url}}/auth/register",
+              "host": [
+                "{{site_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login API",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Device-Token",
+                "value": "ABCD1234",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"login_type\": \"normal\", // normal,facebook,google,apple\r\n\r\n    \"social_user_id\": \"abcd12345\",\r\n\r\n    \"user_login\": \"vikramsinghh.his@gmail.com\", // email and phone\r\n    \"password\": \"Test@1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{site_url}}/auth/login",
+              "host": [
+                "{{site_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login OTP Sent",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"type\": \"email\", // phone, email\r\n    \"value\": \"vikramsinghh.his@gmail.com\"  // +917875784187 vikramsingh.hius@gmail.com\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{site_url}}/auth/login/request-otp",
+              "host": [
+                "{{site_url}}"
+              ],
+              "path": [
+                "auth",
+                "login",
+                "request-otp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login Verify",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \r\n    \"type\": \"email\", // phone, email\r\n    \"value\": \"vikramsinghh.his@gmail.com\",  // +917875784187 vikramsingh.hius@gmail.com\r\n    \"otp\": 255057\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{site_url}}/auth/login/verify-otp",
+              "host": [
+                "{{site_url}}"
+              ],
+              "path": [
+                "auth",
+                "login",
+                "verify-otp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login Resend OTP",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \r\n    \"type\": \"email\", // phone, email\r\n    \"value\": \"vikramsinghh.his@gmail.com\"  // +917875784187 vikramsingh.hius@gmail.com\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{site_url}}/auth/login/resend-otp",
+              "host": [
+                "{{site_url}}"
+              ],
+              "path": [
+                "auth",
+                "login",
+                "resend-otp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Forgot Password Email",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"testuser@yopmail.com\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{site_url}}/auth/forgot-password",
+              "host": [
+                "{{site_url}}"
+              ],
+              "path": [
+                "auth",
+                "forgot-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Forgot Password Verify OTP",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"testuser@yopmail.com\",\r\n    \"otp\": \"1234\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{site_url}}/auth/password/verify-otp",
+              "host": [
+                "{{site_url}}"
+              ],
+              "path": [
+                "auth",
+                "password",
+                "verify-otp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Forgot Password Form",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"token\" : \"eyJpdiI6IlBxSVAyZzZGaENwK21GdzYxKzcwaGc9PSIsInZhbHVlIjoiTEhwaFJEZ3FWbmJuQjNKNUdZNktIZz09IiwibWFjIjoiYzEyZWE0MTdjOGE2ZDlhY2Y3Yjg1ZTM4MWUxOTU0NzhjMmIxNDRlNDJlZjliZjc3ZTY2YzA2NGQ1NDFjMTM5ZCIsInRhZyI6IiJ9\",\r\n    \"email\": \"testuser@yopmail.com\",\r\n    \"password\" : \"Test@1234\",\r\n    \"confirmed_password\" : \"Test@1234\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{site_url}}/auth/password/reset-password",
+              "host": [
+                "{{site_url}}"
+              ],
+              "path": [
+                "auth",
+                "password",
+                "reset-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "Bearer {{acess-token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{site_url}}/auth/logout",
+              "host": [
+                "{{site_url}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Common API",
+      "item": [
+        {
+          "name": "Help & Support",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{site_url}}/common/help-and-support",
+              "host": [
+                "{{site_url}}"
+              ],
+              "path": [
+                "common",
+                "help-and-support"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Terms and Conditions + PP",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{site_url}}/common/terms-privacy",
+              "host": [
+                "{{site_url}}"
+              ],
+              "path": [
+                "common",
+                "terms-privacy"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "After Auth",
+      "item": [
+        {
+          "name": "Dashboard",
+          "item": [
+            {
+              "name": "Dashboard",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{acess-token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{site_url}}/dashboard",
+                  "host": [
+                    "{{site_url}}"
+                  ],
+                  "path": [
+                    "dashboard"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Profile",
+          "item": [
+            {
+              "name": "Profile View",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{site_url}}/profile",
+                  "host": [
+                    "{{site_url}}"
+                  ],
+                  "path": [
+                    "profile"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Profile Update",
+              "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                  "accept": true
+                }
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "John Doee",
+                      "type": "text"
+                    },
+                    {
+                      "key": "email",
+                      "value": "test@gmail.com",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "country_code",
+                      "value": "+91",
+                      "type": "text",
+                      "uuid": "5c002da2-cf6a-450f-bccd-af2522aaf5f3",
+                      "disabled": true
+                    },
+                    {
+                      "key": "phone",
+                      "value": "7451256301",
+                      "type": "text",
+                      "uuid": "8b6983b0-2184-48ed-97d3-67ca97c0af67",
+                      "disabled": true
+                    },
+                    {
+                      "key": "profile_image",
+                      "type": "file",
+                      "uuid": "6af5eff4-a277-4d00-afb9-1746182bc1b4",
+                      "src": "postman-cloud:///1ef5547f-7614-4240-b2e4-9b64140699b2"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{site_url}}/profile",
+                  "host": [
+                    "{{site_url}}"
+                  ],
+                  "path": [
+                    "profile"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Send Email OTP",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "Bearer {{acess-token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"harshsaini.hipl@gmail.com\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{site_url}}/profile/email/send-otp",
+                  "host": [
+                    "{{site_url}}"
+                  ],
+                  "path": [
+                    "profile",
+                    "email",
+                    "send-otp"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Verify Email OTP",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "Bearer {{acess-token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"ajaysaini.helpfulinsight@gmail.com\",\r\n    \"otp\" : \"181950\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{site_url}}/profile/email/verify-otp",
+                  "host": [
+                    "{{site_url}}"
+                  ],
+                  "path": [
+                    "profile",
+                    "email",
+                    "verify-otp"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Send Phone OTP",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "Bearer {{acess-token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"phone\": \"+917976501532\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{site_url}}/profile/phone/send-otp",
+                  "host": [
+                    "{{site_url}}"
+                  ],
+                  "path": [
+                    "profile",
+                    "phone",
+                    "send-otp"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Verify Phone OTP",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "Bearer {{acess-token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"phone\": \"+917976501532\",\r\n    \"otp\" : \"990379\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{site_url}}/profile/phone/verify-otp",
+                  "host": [
+                    "{{site_url}}"
+                  ],
+                  "path": [
+                    "profile",
+                    "phone",
+                    "verify-otp"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Account",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "Bearer {{acess-token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{site_url}}/member/destroy",
+                  "host": [
+                    "{{site_url}}"
+                  ],
+                  "path": [
+                    "member",
+                    "destroy"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Password",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"old_password\": \"Test@12345\",\r\n  \"new_password\": \"Test@1234\",\r\n  \"confirm_new_password\": \"Test@1234\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{site_url}}/profile/update-password",
+                  "host": [
+                    "{{site_url}}"
+                  ],
+                  "path": [
+                    "profile",
+                    "update-password"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{acess-token}}",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "site_url",
+      "value": "http://localhost:8000",
+      "disabled": true
+    },
+    {
+      "key": "site_url",
+      "value": "",
+      "disabled": true
+    },
+    {
+      "key": "site_url",
+      "value": ""
+    },
+    {
+      "key": "acess-token",
+      "value": ""
+    }
+  ]
+}

@@ -3,6 +3,7 @@
 return [
     'menus' => [
         'dashboard' => 'Dashboard',
+        'user'      => 'Users',
         'setting'   => 'Settings',
         'staff'     => "System Users",
         'role'      => "Roles",
@@ -52,6 +53,24 @@ return [
             'name'        => 'Name',
             'permission' => 'Permissions',
             'created_at'  => 'Created At',
+        ],
+    ],
+
+    'user'           => [
+        'title'          => 'Users',
+        'title_singular' => 'User',
+        'fields'         => [
+            'id'                => 'ID',
+            'name'              => 'Name',
+            'email'             => 'Email',
+            'phone'             => 'Phone',
+            'password'          => 'Password',
+            'confirm_password'  => 'Confirm Password',
+            "profile_image"     => "Profile Image",
+            'status'            => 'Status',
+            'created_at'        => 'Created Date',
+            'updated_at'        => 'Updated',
+            'deleted_at'        => 'Deleted',
         ],
     ],
 

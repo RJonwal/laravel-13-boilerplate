@@ -20,34 +20,34 @@ class VerifyPhoneOtpRequest extends FormRequest
         $userId = Auth::id();
         
         return [
-            'contact_number' => [
+            'phone' => [
                 'required', 
                 'regex:/^\+\d{10,15}$/',
-                'unique:users,contact_number,' . $userId . ',id,deleted_at,NULL',
+                'unique:users,phone,' . $userId . ',id,deleted_at,NULL',
                 function ($attribute, $value, $fail) {
                     $authUser = Auth::user();
 
-                    $exists = User::where('contact_number', $value)
+                    $exists = User::where('phone', $value)
                         ->whereNull('deleted_at')
                         ->exists();
 
                     if ($exists) {
-                        $fail(trans('api.validation.contact_number.unique'));
+                        $fail(trans('api.validation.phone.unique'));
                     }
                 },
             ],
-            'otp' => ['required', 'string', 'size:4'],
+            'otp' => ['required', 'string', 'size:6'],
         ];
     }
 
     public function messages(): array
     {
         return [
-            'contact_number.required' => trans('api.validation.contact_number.required'),
-            'contact_number.regex' => trans('api.validation.contact_number.regex'),
-            'contact_number.unique' => trans('api.validation.contact_number.unique'),
+            'phone.required' => trans('api.validation.phone.required'),
+            'phone.regex' => trans('api.validation.phone.regex'),
+            'phone.unique' => trans('api.validation.phone.unique'),
             'otp.required' => 'OTP is required',
-            'otp.size' => 'OTP must be 4 digits',
+            'otp.size' => 'OTP must be 6 digits',
         ];
     }
 

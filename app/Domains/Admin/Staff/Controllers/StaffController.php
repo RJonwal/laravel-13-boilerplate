@@ -26,7 +26,7 @@ class StaffController extends Controller
         abort_if(Gate::denies('staff_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         try {
             return $dataTable->render('Staff::index');
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return abort(500);
         }
     }

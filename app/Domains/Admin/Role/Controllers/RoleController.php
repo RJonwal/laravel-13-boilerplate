@@ -48,9 +48,7 @@ class RoleController extends Controller
                     $groupedPermissions['report_review'][] = $permission;
                 } elseif (Str::startsWith($name, 'report_user_')) {
                     $groupedPermissions['report_user'][] = $permission;
-                } /* elseif (Str::startsWith($name, 'favorite_place_')) {
-                    $groupedPermissions['favorite_place'][] = $permission;
-                } */ elseif (Str::startsWith($name, 'service_category_')) {
+                } elseif (Str::startsWith($name, 'service_category_')) {
                     $groupedPermissions['service_category'][] = $permission;
                 }
                 else {
@@ -60,7 +58,7 @@ class RoleController extends Controller
             }
             $viewHTML = view('Role::create',compact('groupedPermissions'))->render();
             return response()->json(['success' => true, 'htmlView' => $viewHTML]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             // dd($e);
             return response()->json(['success' => false, 'error_type' => 'something_error', 'error' => trans('messages.error_message')], 400 );
         }
@@ -91,7 +89,7 @@ class RoleController extends Controller
                 'message' => trans('messages.crud.add_record'),
             ], 200);
             
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             DB::rollBack();
             return response()->json(['success' => false, 'error_type' => 'something_error', 'error' => trans('messages.error_message')], 400 );
         }
@@ -211,7 +209,7 @@ class RoleController extends Controller
                         'error' => trans('messages.has_user_error'),
                     ], 400);
                 }
-                // $role->delete();
+                $role->delete();
                 
                 DB::commit();
                 $response = [

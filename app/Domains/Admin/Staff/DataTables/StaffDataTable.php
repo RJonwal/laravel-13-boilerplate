@@ -127,12 +127,12 @@ class StaffDataTable extends DataTable
      */
     public function html(): HtmlBuilder
     {
-        $orderByColumn = 1;        
+        $orderByColumn = 6; // Default order by created_at   
         return $this->builder()
                     ->setTableId('staff-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy($orderByColumn, 'asc')                    
+                    ->orderBy($orderByColumn, 'desc') // default order by created_at desc              
                     ->selectStyleSingle()
                     // ->lengthMenu($pagination['lengthMenu'])
                     ->pageLength(50)
@@ -144,45 +144,6 @@ class StaffDataTable extends DataTable
                         'language' => [
                             'emptyTable' => 'No records available',
                         ],
-                        // 'drawCallback' => 'function(settings) {
-                        //     var api = this.api();
-                        //     var data = api.rows({ page: "current" }).data();
-        
-                        //     var hasData = data.length > 0;
-                        //     var columnCount = $("#staff-table").find("th").length;
-                        //     // Store state globally
-                        //     $("#staff-table").data("has_data", hasData);
-                        //     $("#staff-table").attr("data-has_data", hasData);
-        
-                        //     // If there are no records, disable Responsive child rows
-                        //     if (!hasData) {
-                        //         setTimeout(function(){
-                        //             $("#staff-table").find("th, td").css("display", "table-cell");
-                        //             $("#staff-table").find(".dt-empty").attr("colspan", columnCount);
-                        //         }, 500);
-                        //     }
-        
-                        //     $(window).on("resize", function () {
-                        //         var hasData = $("#staff-table").data("has_data");
-        
-                        //         if (!hasData) {
-                        //             // Ensure all columns remain visible on resize if no data
-                        //             setTimeout(function(){
-                        //                 $("#staff-table").find("th, td").css("display", "table-cell");
-                        //                 $("#staff-table").find(".dt-empty").attr("colspan", columnCount);
-                        //             }, 500);
-                        //         }
-                        //     });
-        
-                        //     var rows = data.length;
-                        //     var pageLength = api.page.len();
-                        //     var recordsTotal = api.page.info().recordsTotal;
-                        //     if (recordsTotal > pageLength) {
-                        //         $(this).closest(".dt-container").find(".dt-paging.paging_simple_numbers").show();
-                        //     } else {
-                        //         $(this).closest(".dt-container").find(".dt-paging.paging_simple_numbers").hide();
-                        //     }
-                        // }'
                     ]);
     }
 

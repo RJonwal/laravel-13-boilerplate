@@ -3,7 +3,6 @@
 namespace App\Domains\Admin\Auth\Controllers;
 
 use App\Domains\Admin\Auth\Requests\LoginRequest;
-use App\Domains\Core\User\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,7 +38,7 @@ class LoginController extends Controller
                     'redirect_url' => route('admin.dashboard')
                 ]);
             }
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return response()->json([
                 'success' => false,
                 'message' => trans('messages.wrong_credentials')
