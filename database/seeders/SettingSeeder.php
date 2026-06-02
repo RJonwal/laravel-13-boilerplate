@@ -17,7 +17,7 @@ class SettingSeeder extends Seeder
         $settings = [
             [
                 'key'           => 'site_title',
-                'value'         => 'Juste',
+                'value'         => 'Laravel 13 Boilerplate',
                 'type'          => 'text',
                 'display_name'  => 'Site Title',
                 'group'         => 'web',
@@ -33,18 +33,6 @@ class SettingSeeder extends Seeder
                 'type'          => 'image',
                 'details'       => null,
                 'display_name'  => 'Site Logo',
-                'group'         => 'web',
-                'status'        => 1,
-                'position'      => 2,
-                'created_at'    => Carbon::now()->format('Y-m-d H:i:s'),
-                'created_by'    => 1,
-            ],
-            [
-                'key'           => 'auth_logo',
-                'value'         => null,
-                'type'          => 'image',
-                'details'       => null,
-                'display_name'  => 'Auth Page Logo',
                 'group'         => 'web',
                 'status'        => 1,
                 'position'      => 2,
