@@ -35,7 +35,7 @@ class StaffController extends Controller
     {
         abort_if(Gate::denies('staff_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         try {
-            $roles = Role::whereNotIn('id', [config('constant.roles.super_admin')])->select('id', 'name')->orderBy('name','asc')->get();
+            $roles = Role::whereNotIn('id', [config('constant.roles.super_admin'), config('constant.roles.customer')])->select('id', 'name')->orderBy('name','asc')->get();
             $viewHTML = view('Staff::create', compact('roles'))->render();
             return response()->json(['success' => true, 'htmlView' => $viewHTML]);
         } catch (\Throwable $th) {
@@ -92,7 +92,7 @@ class StaffController extends Controller
         abort_if(Gate::denies('staff_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         try {
             $staff = User::where('uuid', $id)->first();
-            $roles = Role::whereNotIn('id', [config('constant.roles.super_admin')])->select('id', 'name')->orderBy('name','asc')->get();
+            $roles = Role::whereNotIn('id', [config('constant.roles.super_admin'), config('constant.roles.customer')])->select('id', 'name')->orderBy('name','asc')->get();
             $viewHTML = view('Staff::edit', compact('staff', 'roles'))->render();
             return response()->json(['success' => true, 'htmlView' => $viewHTML]);
         } catch (\Throwable $th) {

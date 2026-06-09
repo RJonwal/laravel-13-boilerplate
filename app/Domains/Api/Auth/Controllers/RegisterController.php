@@ -2,11 +2,14 @@
 
 namespace App\Domains\Api\Auth\Controllers;
 
+use App\Domains\Api\Auth\Emails\NewUserRegisteredMail;
+use App\Domains\Api\Auth\Emails\WelcomeUserMail;
 use App\Domains\Api\Auth\Requests\RegisterRequest;
 use App\Http\Controllers\APIController;
 use App\Domains\Core\User\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends APIController
 {
@@ -37,6 +40,10 @@ class RegisterController extends APIController
             $user->roles()->sync([config('constant.roles.customer', 2)]);
 
             DB::commit();
+
+            Mail::to($user->email)->send(new WelcomeUserMail($user));   // new user: welcome mail
+            
+            Mail::to(getSetting('support_email'))->send(new NewUserRegisteredMail($user));   // super admin: new user register
 
             return $this->apiSuccess([], trans('messages.register_messages.success'));
         } catch (\Throwable $th) {

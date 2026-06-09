@@ -11,19 +11,17 @@ class SendEmailOtp extends Mailable
     use Queueable, SerializesModels;
 
     public $email;
-    public $user;
     public $otp;
-    public $subjectText;
+    public $language="en";
     public $expireMinutes;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($email, $otp, $subjectText, $expireMinutes)
+    public function __construct($email, $otp, $expireMinutes)
     {
         $this->email = $email;
         $this->otp = $otp;
-        $this->subjectText = $subjectText;
         $this->expireMinutes = $expireMinutes;
     }
 
@@ -35,6 +33,8 @@ class SendEmailOtp extends Mailable
         return $this->markdown('Auth::emails.send-email-otp', [
             'email' => $this->email ,
             'otp' => $this->otp ,
-            'expireMinutes' => $this->expireMinutes])->subject($this->subjectText);
+            'expireMinutes' => $this->expireMinutes,
+            'language' => $this->language
+        ])->subject(trans('emails.profile_verify_email_otp.subject', [], $this->language));
     }
 }

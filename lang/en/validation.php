@@ -209,6 +209,6 @@ return [
     'max_file' => "The :attribute size must equal or less than :size",
 
     // Other Modules Messages
-    'phone_regex' => "Please enter a valid :attribute (10 digits, starting with 6-9)",
+    'phone_regex' => "Please enter a valid phone number.",
     'field_different' => "The :attribute and :attribute2 must be different.",
 ];

@@ -248,9 +248,7 @@ class ProfileController extends APIController
 
     protected function sendEmailOtpp($email, $otp, $expireMinutes)
     {
-        $subject = 'Email Verification OTP';
-
-        Mail::to($email)->send(new SendEmailOtp($email, $otp, $subject, $expireMinutes));
+        Mail::to($email)->send(new SendEmailOtp($email, $otp, $expireMinutes));
     }
 
     public function destroy(Request $request)

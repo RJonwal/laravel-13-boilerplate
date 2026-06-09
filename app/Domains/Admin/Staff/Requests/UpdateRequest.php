@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
         return [
             'name'              => ['required', 'regex:/^[\p{Devanagari}a-zA-Z\s]+$/u', 'string', 'max:255', new NoMultipleSpacesRule],
             'email'             => ['required','email:dns','regex:/^(?!.*[\/]).+@(?!.*[\/]).+\.(?!.*[\/]).+$/i', 'unique:users,email,'. $userUuid.',uuid,deleted_at,NULL'],
-            'phone'             => [ 'required', 'numeric', 'regex:/^[6-9]\d{9}$/', 'unique:users,phone,'. $userUuid.',uuid,deleted_at,NULL'],
+            'phone'             => [ 'required', 'numeric', 'regex:/^[1-9]\d{6,14}$/', 'unique:users,phone,'. $userUuid.',uuid,deleted_at,NULL'],
 
             'role'   => ['required','exists:roles,id'],
         ];
@@ -37,7 +37,7 @@ class UpdateRequest extends FormRequest
         return [
             'name.regex' => trans('validation.only_characters', ['attribute' => strtolower(trans('cruds.staff.fields.name'))]),
             // 'password.regex' => trans('validation.password.regex', ["attribute" => strtolower(trans('cruds.staff.fields.password'))]),
-            'phone.regex'    => 'Please enter a valid phone number (10 digits, starting with 6-9).',
+            'phone.regex'    => trans('validation.phone_regex'),
         ];
     }
 

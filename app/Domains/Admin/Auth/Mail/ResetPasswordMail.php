@@ -10,7 +10,7 @@ class ResetPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $name,$subject;
+    public $name,$language;
     protected $reset_password_url;
 
     /**
@@ -18,12 +18,11 @@ class ResetPasswordMail extends Mailable
      *
      * @return void
      */
-    public function __construct($name,$reset_password_url,$subject)
+    public function __construct($name,$reset_password_url)
     {
         $this->name = $name;
         $this->reset_password_url = $reset_password_url;
-        $this->subject = $subject;
-
+        $this->language = "en";
     }
 
    /**
@@ -36,6 +35,7 @@ class ResetPasswordMail extends Mailable
         return $this->markdown('Auth::emails.auth.reset-password', [
                 'name' => $this->name,
                 'reset_password_url' => $this->reset_password_url,
-            ])->subject($this->subject);
+                'language' => $this->language,
+            ])->subject(trans('emails.reset_password_admin_panel.subject'), [], $this->language);
     }
 }

@@ -41,9 +41,7 @@ class ForgotPasswordController extends Controller
 
                 $resetPasswordUrl = route('reset.password',['token'=>$token]);
                 
-                DB::table('password_reset_tokens')
-                ->where('email', $emailId)
-                ->delete();
+                DB::table('password_reset_tokens')->where('email', $emailId)->delete();
 
                 DB::table('password_reset_tokens')->insert([
                     'email' => $emailId,
@@ -51,8 +49,7 @@ class ForgotPasswordController extends Controller
                     'created_at' => Carbon::now()
                 ]);
 
-                $subject = 'Reset Password Notification';
-                Mail::to($emailId)->send(new ResetPasswordMail($user->name, $resetPasswordUrl, $subject));
+                Mail::to($emailId)->send(new ResetPasswordMail($user->name, $resetPasswordUrl));
 
                 DB::commit();
 
@@ -61,7 +58,7 @@ class ForgotPasswordController extends Controller
                     'message' => trans('passwords.sent')
                 ]);
 
-            }else{
+            } else{
                 return response()->json([
                     'success' => false,
                     'message' => trans('messages.invalid_email')

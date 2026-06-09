@@ -49,5 +49,10 @@ class AppServiceProvider extends ServiceProvider
             // Super admin: 5 attempts per minute
             return Limit::perMinute(5,5)->by($key);
         });
+
+        if ($this->app->environment('local') && class_exists(\Laravel\Telescope\TelescopeServiceProvider::class)) {
+            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
+        }
     }
 }

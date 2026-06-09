@@ -69,9 +69,9 @@ class User extends Authenticatable
         });
     }
 
-    public function sendPasswordResetOtpNotification($user, $token, $subject, $expiretime)
+    public function sendPasswordResetOtpNotification($user, $token, $expiretime)
     {
-        Mail::to($user->email)->send(new SendResetPasswordOtpMail($user, $token, $subject, $expiretime));
+        Mail::to($user->email)->send(new SendResetPasswordOtpMail($user, $token, $expiretime));
     }
 
     public function roles()

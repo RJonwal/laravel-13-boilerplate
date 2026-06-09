@@ -10,18 +10,18 @@ class SendResetPasswordOtpMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user,$token, $subject , $expiretime;
+    public $user,$token, $language , $expiretime;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user,$token, $subject , $expiretime)
+    public function __construct($user,$token, $expiretime)
     {
         $this->user = $user;
         $this->token = $token;
-        $this->subject = $subject;
+        $this->language = 'en';
         $this->expiretime = $expiretime;
     }
 
@@ -35,6 +35,6 @@ class SendResetPasswordOtpMail extends Mailable
         return $this->markdown('Auth::emails.auth.forgot_password_otp', [
             'user' => $this->user ,
             'token' => $this->token ,
-            'expiretime' => $this->expiretime])->subject($this->subject);
+            'expiretime' => $this->expiretime])->subject(trans('emails.reset_password_mobile_app.subject', [], $this->language));
     }
 }

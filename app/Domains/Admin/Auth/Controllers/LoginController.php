@@ -13,8 +13,7 @@ class LoginController extends Controller
     }
 
     public function submitLogin(LoginRequest $request){
-        try {
-        
+        try {        
             $remember_me = !is_null($request->remember_me) ? true : false;
 
             $credentialsOnly = $request->only('email', 'password');
@@ -27,6 +26,15 @@ class LoginController extends Controller
                     return response()->json([
                         'success' => false,
                         'message' => trans('messages.account_deactivate')
+                    ], 400);
+                }
+
+                // Prevent unauthorized roles (hosts/members)
+                if ($user->is_customer) {
+                    Auth::logout();
+                    return response()->json([
+                        'success' => false,
+                        'message' => __('auth.unauthorize'),
                     ], 400);
                 }
 

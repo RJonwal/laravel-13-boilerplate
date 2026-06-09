@@ -35,9 +35,8 @@ class ForgotPasswordController extends APIController
                     ['email' => $request->email]
                 );
 
-            $subject = "Reset Password OTP";
             $expiretime = config('auth.passwords.users.otp_expire') . ' Minutes';
-            $user->sendPasswordResetOtpNotification($user, $token, $subject, $expiretime);
+            $user->sendPasswordResetOtpNotification($user, $token, $expiretime);
 
             DB::commit();
 

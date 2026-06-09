@@ -1,87 +1,64 @@
 <?php
 
-return [ 
-    'subscription_activation_mail_master' => [
-        'subject' => 'Your Subscription is Activated',
+return [
+    'user_register_welcome_mail_customer' => [
+        'subject' => 'Welcome to Juste platform',
         'body' => [
             'line1' => 'Hello :user_name,',
-            'line2' => "Thank you for subscribing to our <strong>:plan_name</strong>.",
-            'line3' => '<strong>Billing Cycle</strong>: :billing_cycle',
-            'line4' => '<strong>Start Date</strong>: :start_date',
-            'line5' => '<strong>End Date</strong>: :end_date',
-            'line6' => '<strong>Amount Paid</strong>: :price',
-            'line7' => 'Your subscription is now active. Enjoy all the features included in your plan!',
-        ]
-    ],
-    'subscription_activation_mail_super_admin' => [
-        'subject' => 'New Subscription Purchased',
-        'body' => [
-            'line1' => 'Hello,',
-            'line2' => "A new subscription has been purchased by:",
-            'line3' => '<strong>Name:</strong> :user_name',
-            'line4' => '<strong>Email:</strong> :user_email',
-            'line5' => '<strong>Mobile:</strong> :phone_number',
-            'line6' => '<strong>Plan Name:</strong> :plan_name',
-            'line7' => '<strong>Billing Cycle:</strong> :billing_cycle',
-            'line8' => '<strong>Amount Paid:</strong> :price',
-            'line9' => '<strong>Start Date:</strong> :start_date',
-            'line10' => '<strong>End Date:</strong> :end_date',
+            'line2' => "Welcome to the Juste platform! We're excited to have you on board. You can now log in and start exploring qualified professionals near you to access the services you need.",
+            'line3' => 'Thank you for joining us!',
         ]
     ],
 
-    'subscription_plan_deactivated_master' => [
-        'subject' => 'Your subscription plan has been deactivated',
+    'user_register_mail_super_admin' => [
+        'subject' => 'A new user has registered',
         'body' => [
-            'line1' => 'Hello :user_name',
-            'line2' => "We would like to inform you that your current subscription plan <strong>:plan_name</strong> has been deactivated by the administrator.",
-            'line3' => 'You can continue using the plan until <strong>:end_date</strong>, but it will not auto-renew. Please choose a new plan to continue without interruption.',
+            'line1' => 'Hello :name,',
+            'line2' => "A new user has just registered on the platform:",
+            'line3' => '<strong>Name:</strong> :username',
+            'line4' => '<strong>Email:</strong> :userEmail',
+            'line5' => '<strong>Role:</strong> :role',
+            'line6' => '<strong>Mobile Number:</strong> :phone_number',
+            'line7' => 'Please review their profile if needed.',
         ]
     ],
 
-    'subscription_plan_activated_master' => [
-        'subject' => 'Good news! Your subscription plan is active again',
+    'reset_password_admin_panel' => [
+        'subject' => "Reset Password Notification",
         'body' => [
-            'line1' => 'Hello :user_name',
-            'line2' => 'We\'re excited to let you know that your subscription plan <strong>:plan_name</strong> has been reactivated by the administrator.',
-            'line3' => 'If your subscription expired earlier, you can purchase this plan again from your dashboard.',
+            'line1' => 'Hello :user_name,',
+            'line2' => "You are receiving this email because we received a password reset request for your account.",
+            'line3' => "Please click on the link below to reset your password and get access to your account :",
+            'line4' => 'If you\'re having trouble clicking the "Reset Password" button, copy and paste the URL below into your web browser:',
+            'line5' => 'If you did not request a password reset, no further action is required.',
+            "button" => "Reset Password"
         ]
     ],
 
-
-    'event_status_change_by_admin' => [
-        'subject_approved' => 'Your Event Has Been Approved',
-        'subject_rejected' => 'Your Event Submission Was Not Approved',
+    'reset_password_mobile_app' => [
+        'subject' => "Reset Password OTP",
         'body' => [
-            'line1' => 'Hello :user_name',
-            'approved' => [
-                'line1' => 'We\'re happy to inform you that your event “:event_name” has been successfully reviewed and approved by our admin team.',
-                'line2' => 'Event Details',
-                'line2_a' => 'Event Name',
-                'line2_b' => 'Event Date & Time',
-                'line2_c' => 'Location',
-                'line3' => 'Your event is now live and visible to members. You can manage attendees and view event details from your dashboard.',
-                'line4' => 'If you have any questions or need assistance, feel free to contact our support team.',
-            ],
-            'rejected' => [
-                'line1' => 'Thank you for submitting your event “:event_name” for review',
-                'line2' => 'After careful evaluation, we regret to inform you that the event was not approved at this time.',
-
-                'line3' => 'If you have any questions or need assistance, feel free to contact our support team.',
-            ]
+            'line1' => 'Hello :user_name,',
+            'line2' => "We received a request to reset your password. Please use the following OTP to proceed:",
+            'line3' => "Your OTP:",
+            'line4' => 'This OTP will expire in :expire_time. If you did not request a password reset, please ignore this email.',
+            'line5' => 'If you did not request a password reset, no further action is required.',
         ]
     ],
-    'master_subscription_cancelled_mail' => [
-        'subject' => 'Your subscription has been cancelled',
+
+    'profile_verify_email_otp' => [
+        'subject' => "Email Verification OTP",
         'body' => [
-            'line1' => 'Hello :name',
-            'line2' => 'Your Velvet Room subscription has expired because it was cancelled and has now reached the end of its active period.',
-            'line3' => 'You will no longer have access to premium features, but you can resubscribe at any time through the app.',
-            'line4' => 'Thank you for being a part of Velvet Room. We hope to see you again soon.',
+            'line1' => 'Hello :user_name,',
+            'line2' => "We received a request to verify your email address.",
+            'line3' => "Please use the following One-Time Password (OTP) to proceed with verifying your email:",
+            'line4' => 'This OTP will expire in :expire_time minutes.',
+            'line5' => 'If you did not request a password reset, you can safely ignore this email.',
         ]
     ],
 
     'regards'   => 'Regards',
-    'project_name' => 'Exklusive IOS Community App',
+    'project_name' => config('app.name'),
 ];
 
 ?>
